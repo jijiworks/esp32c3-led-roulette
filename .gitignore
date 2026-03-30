@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# OS
+.DS_Store
+Thumbs.db
+
+# External libraries
+lib/
+
+# VS Code
+.vscode/
+
+# PlatformIO
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# Build / firmware files
+build/
+dist/
+*.bin
+*.hex
+*.elf
+*.uf2
+
+# Logs
+*.log
