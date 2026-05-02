@@ -4,7 +4,9 @@
 // -------------------------
 // Pin configuration
 // -------------------------
-const uint8_t LED_PINS[8] = {0, 1, 2, 3, 4, 5, 6, 7};
+// LEDs are numbered 1 to 8 clockwise from the upper right.
+// Pin mapping: LED1-LED8 = 4, 2, 0, 5, 6, 7, 1, 3.
+const uint8_t LED_PINS[8] = {4, 2, 0, 5, 6, 7, 1, 3};
 const uint8_t BUTTON_PIN = 10;
 const uint8_t BUZZER_PIN = 20;   // Active buzzer
 
@@ -26,10 +28,6 @@ const int BEEP_ON_MS_STOP = 60;    // Buzzer duration during final movement
 
 bool isRunning = false;
 bool prevButtonState = HIGH;
-
-// Mapping between numbers 1-8 and the stop pin
-// 1->4, 2->5, 3->6, 4->7, 5->0, 6->1, 7->2, 8->3
-const uint8_t RESULT_TO_PIN[8] = {4, 5, 6, 7, 0, 1, 2, 3};
 
 // -------------------------
 // Helper functions
@@ -156,8 +154,7 @@ void runRoulette() {
   prevButtonState = HIGH;
 
   int result = getRouletteResult(); // 1 to 8
-  uint8_t stopPin = RESULT_TO_PIN[result - 1];
-  int stopIndex = indexOfPin(stopPin);
+  int stopIndex = result - 1;
 
   // 1) Start from the top (pin0) and make 2 full laps
   for (int lap = 0; lap < 2; lap++) {
